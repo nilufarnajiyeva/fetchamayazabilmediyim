@@ -1,11 +1,17 @@
-var card=document.querySelector(".row")
 fetch('https://restcountries.com/v3.1/all')
-.then(res=>res.json())
-.then(data=> {
-    for(let i=0; i<data.length; i++){
-            card.innerHTML+=` <div class="col-2">
-            <div class="card" >
-            <img src="${data[i].image}"class="card-img-top" >
-            </div>`
+    .then(res => res.json())
+    .then(json => {
+        const random = json[Math.floor(Math.random() * json.length)];
+        document.querySelector('.image').src = random.flags.png;
+
+        const input = document.querySelector(".input");
+        document.querySelector('.btn').addEventListener('click', function () {
+            if (json.name == input.value) {
+                alert("duzgundur")
+            }
+            else {
+                alert("Ölkə adı düzgün deyil!");
+            }
         }
-});
+        )
+    })
